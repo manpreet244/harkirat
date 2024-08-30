@@ -1,0 +1,21 @@
+
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon"
+  },
+  "nodemonConfig": {
+    "watch": ["src , main.js","middlewares"],
+    "ext": "js,json",
+    "ignore": ["node_modules/*", "test/*"],
+    "exec": "node main.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"},
+  "devDependencies": {
+    "nodemon": "^3.1.4"  
+}
+}
