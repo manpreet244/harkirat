@@ -22,12 +22,15 @@ app.use(express.json()); //before posting something convert it to json first
 //   });
 // });
 function userMiddleware(req, res, next) {
-
   const username = req.headers.username;
   const password = req.headers.password;
-  if (username != "manpreet" && password != "pass") {
-    res.status(403).json({ msg: "Incorrect inputs." });
-  } else next();
+
+  // Check if both username and password are correct
+  if (username !== "manpreet" || password !== "pass") {
+    res.status(400).json({ msg: "Incorrect inputs." });
+  } else {
+    next();
+  }
 }
 function kidneyMiddleware(req, res, next) {
   const kidneyId = parseInt(req.query.kidneyId, 10);
@@ -40,14 +43,14 @@ function kidneyMiddleware(req, res, next) {
   }
 }
 
-app.use(userMiddleware); //anything after this line will use userMiddleware
+// app.use(userMiddleware); //anything after this line will use userMiddleware
 app.get(
   "/health-checkup",
   userMiddleware,
   kidneyMiddleware,
-  function (req, res, next) {
+  function (req, res) {
     //here send the final response after middlewares
-    res.send("Your kidney is f4efine ");
+    res.send("Your kidney is f4efimjnhbgvfcdsne ");
   }
 );
 
